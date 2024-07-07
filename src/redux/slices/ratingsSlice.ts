@@ -1,4 +1,3 @@
-// src/redux/slices/ratingsSlice.ts
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../store';
 import localforage from 'localforage';

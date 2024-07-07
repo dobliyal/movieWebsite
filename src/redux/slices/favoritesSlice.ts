@@ -1,4 +1,3 @@
-// src/redux/slices/favoritesSlice.ts
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Movie } from '../../types';
 import localforage from 'localforage';
@@ -17,11 +16,15 @@ const favoritesSlice = createSlice({
   reducers: {
     addFavorite(state, action: PayloadAction<Movie>) {
       state.favorites.push(action.payload);
-      localforage.setItem('favorites', state.favorites);
+      localforage.setItem('favorites', state.favorites).catch(err => {
+        console.error("Error saving favorites", err);
+      });
     },
     removeFavorite(state, action: PayloadAction<Movie>) {
       state.favorites = state.favorites.filter(movie => movie.imdbID !== action.payload.imdbID);
-      localforage.setItem('favorites', state.favorites);
+      localforage.setItem('favorites', state.favorites).catch(err => {
+        console.error("Error saving favorites", err);
+      });
     },
     setFavorites(state, action: PayloadAction<Movie[]>) {
       state.favorites = action.payload;

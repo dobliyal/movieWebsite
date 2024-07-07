@@ -1,4 +1,3 @@
-// src/pages/MovieDetailPage.tsx
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import useMovies from '../hooks/useMovies';
@@ -13,14 +12,37 @@ const MovieDetailPage: React.FC = () => {
   const { addToFavorites } = useFavorites();
   const movie = movies.find(m => m.imdbID === id);
 
-  if (!movie) return <Typography>Movie not found</Typography>;
+  if (!movie) return <Typography variant="h5">Movie not found</Typography>;
 
   return (
-    <Container>
-      <Box>
-        <Typography variant="h4">{movie.Title}</Typography>
-        <Typography variant="subtitle1">{movie.Plot}</Typography>
-        <Button onClick={() => addToFavorites(movie)}>Add to Favorites</Button>
+    <Container sx={{ mt: 4 }}>
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          textAlign: 'center',
+          bgcolor: 'background.paper',
+          p: 4,
+          borderRadius: 2,
+          boxShadow: 3,
+          width: '100%'
+        }}
+      >
+        <Typography variant="h4" gutterBottom>
+          {movie.Title}
+        </Typography>
+        <Typography variant="subtitle1" gutterBottom>
+          {movie.Plot}
+        </Typography>
+        <Button
+          variant="contained"
+          color="primary"
+          sx={{ mt: 2 }}
+          onClick={() => addToFavorites(movie)}
+        >
+          Add to Favorites
+        </Button>
       </Box>
       {/* <RatingComponent movieId={movie.imdbID} /> */}
       {/* <CommentSection movieId={movie.imdbID} /> */}
@@ -29,4 +51,3 @@ const MovieDetailPage: React.FC = () => {
 };
 
 export default MovieDetailPage;
-

@@ -1,4 +1,3 @@
-// // src/components/RatingComponent.tsx
 // import React from 'react';
 // import { Rating } from '@mui/material';
 // import { useDispatch } from 'react-redux';

@@ -1,22 +1,45 @@
-// src/pages/HomePage.tsx
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import useMovies from '../hooks/useMovies';
 import MovieCard from '../components/MovieCard';
-import { Grid } from '@mui/material';
+import { Container } from '@mui/material';
+import SearchBar from '../components/SearchBar';
+import { Movie } from '../types';
+import { useLocation } from 'react-router-dom';
 
 const HomePage: React.FC = () => {
   const movies = useMovies();
+  const [filteredMovies, setFilteredMovies] = useState<Movie[]>([]);
+  const location = useLocation();
+
+  useEffect(() => {
+    setFilteredMovies(movies);
+  }, [movies]);
+
+  useEffect(() => {
+    if (location.pathname === '/') {
+      setFilteredMovies(movies);
+    }
+  }, [location.pathname, movies]);
+
+  const handleSearch = (query: string) => {
+    if (query) {
+      const filtered = movies.filter((movie) =>
+        movie.Title.toLowerCase().includes(query.toLowerCase())
+      );
+      setFilteredMovies(filtered);
+    } else {
+      setFilteredMovies(movies);
+    }
+  };
 
   return (
-    <Grid container spacing={2}>
-      {movies.map(movie => (
-        <Grid item xs={12} sm={6} md={4} key={movie.imdbID}>
-          <MovieCard movie={movie} />
-        </Grid>
+    <Container>
+      <SearchBar onSearch={handleSearch} />
+      {filteredMovies.map((movie) => (
+        <MovieCard key={movie.imdbID} movie={movie} />
       ))}
-    </Grid>
+    </Container>
   );
 };
 
 export default HomePage;
-

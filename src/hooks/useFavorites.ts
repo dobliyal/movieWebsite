@@ -12,15 +12,15 @@ const useFavorites = () => {
   const favorites: Movie[] = useSelector((state: RootState) => state.favorites.favorites);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    localforage.getItem('favorites').then(storedFavorites => {
-      if (storedFavorites) {
-        dispatch(setFavorites(storedFavorites as Movie[]));
-      }
-    }).catch(err => {
-      console.error("Error loading favorites", err);
-    });
-  }, [dispatch]);
+  // useEffect(() => {
+  //   localforage.getItem('favorites').then(storedFavorites => {
+  //     if (storedFavorites) {
+  //       dispatch(setFavorites(storedFavorites as Movie[]));
+  //     }
+  //   }).catch(err => {
+  //     console.error("Error loading favorites", err);
+  //   });
+  // }, [dispatch]);
 
   useEffect(() => {
     if (user) {
@@ -48,8 +48,12 @@ const useFavorites = () => {
       });
     }
   };
+  const isFavorite=(movie:Movie)=>{
+      return favorites.some(favorite=>favorite.imdbID===movie.imdbID)
+  } 
 
-  return { favorites, addToFavorites, removeFromFavorites };
+
+  return { isFavorite,favorites, addToFavorites, removeFromFavorites };
 };
 
 export default useFavorites;

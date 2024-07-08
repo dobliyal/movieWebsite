@@ -9,7 +9,7 @@ import CommentSection from '../components/CommentSection';
 const MovieDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const movies = useMovies();
-  const { addToFavorites,removeFromFavorites } = useFavorites();
+  const { addToFavorites,removeFromFavorites,isFavorite} = useFavorites();
   const movie = movies.find(m => m.imdbID === id);
 
   if (!movie) return <Typography variant="h5">Movie not found</Typography>;
@@ -35,22 +35,24 @@ const MovieDetailPage: React.FC = () => {
         <Typography variant="subtitle1" gutterBottom>
           {movie.Plot}
         </Typography>
-        <Button
+        { !isFavorite(movie)?
+        (<Button
           variant="contained"
           color="primary"
           sx={{ mt: 2 }}
           onClick={() => addToFavorites(movie)}
         >
           Add to Favorites
-        </Button>
-        <Button
+        </Button>):
+       ( <Button
           variant="contained"
           color="primary"
           sx={{ mt: 2 }}
           onClick={() => removeFromFavorites(movie)}
         >
           Remove From Favorites
-        </Button>
+        </Button>)
+}
       </Box>
       <CommentSection movieId={movie.imdbID} />
       {/* <RatingComponent movieId={movie.imdbID} /> */}

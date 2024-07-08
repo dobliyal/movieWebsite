@@ -9,21 +9,23 @@ interface SearchBarProps {
 const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
   const [query, setQuery] = useState('');
 
-  const handleSearch = () => {
-    onSearch(query);
+  const handleSearch = (e:React.ChangeEvent<HTMLInputElement>) => {
+    const value=e.target.value;
+    setQuery(value);
+    onSearch(value);
   };
 
   return (
     <Container>
       <Box display="flex" justifyContent="center" my={2}>
-        <TextField
+        <TextField onChange={handleSearch} 
           label="Search Movies"
           value={query}
-          onChange={(e) => setQuery(e.target.value)}
+          // onChange={(e) => setQuery(e.target.value)}
           variant="outlined"
           fullWidth
         />
-        <IconButton onClick={handleSearch} aria-label="search">
+        <IconButton aria-label="search">
           <SearchIcon />
         </IconButton>
       </Box>

@@ -54,6 +54,7 @@ const useAuth = () => {
   };
 
   const logout = async () => {
+    console.log('Logging out user:', user);
     setUser(null);
     await localforage.removeItem('user');
   };

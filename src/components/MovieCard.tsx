@@ -15,16 +15,22 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
         boxShadow: 4,
       }}}>
       <CardContent sx={{ flex: 1 }}>
-        <Typography gutterBottom variant="h5" component="div">
-          {movie.Title}
+        <Typography  gutterBottom variant="h5" component="div">
+          <strong>{movie.Title}</strong>
         </Typography>
-        <Typography variant="body2" color="text.secondary">
-          {movie.Plot}
+        <Typography  sx={{ marginTop: '4rem' }} >
+          <strong>Ratings:</strong>{movie.Ratings[0].Value}
+        </Typography>
+        <Typography >
+        <strong>Released:</strong>{movie.Released}
+        </Typography>
+        <Typography >
+        <strong>Director:</strong> {movie.Director}
         </Typography>
         <Button
           component={Link}
           to={`/movie/${movie.imdbID}`}
-          sx={{ marginTop: '1rem' }}
+          sx={{ marginTop: '4rem' }}
         >
           View Details
         </Button>

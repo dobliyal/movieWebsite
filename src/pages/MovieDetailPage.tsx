@@ -5,11 +5,12 @@ import { Container, Typography, Box, Button } from '@mui/material';
 // import CommentSection from '../components/CommentSection';
 // import RatingComponent from '../components/RatingComponent';
 import useFavorites from '../hooks/useFavorites';
+import CommentSection from '../components/CommentSection';
 
 const MovieDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const movies = useMovies();
-  const { addToFavorites } = useFavorites();
+  const { addToFavorites,removeFromFavorites } = useFavorites();
   const movie = movies.find(m => m.imdbID === id);
 
   if (!movie) return <Typography variant="h5">Movie not found</Typography>;
@@ -43,7 +44,16 @@ const MovieDetailPage: React.FC = () => {
         >
           Add to Favorites
         </Button>
+        <Button
+          variant="contained"
+          color="primary"
+          sx={{ mt: 2 }}
+          onClick={() => removeFromFavorites(movie)}
+        >
+          Remove From Favorites
+        </Button>
       </Box>
+      <CommentSection movieId={movie.imdbID} />
       {/* <RatingComponent movieId={movie.imdbID} /> */}
       {/* <CommentSection movieId={movie.imdbID} /> */}
     </Container>

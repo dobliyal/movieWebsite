@@ -5,7 +5,7 @@ import { Movie } from '../types';
 import useAuth from './useAuth';
 import { useEffect } from 'react';
 import localforage from 'localforage';
-import movieData from '../assets/movies.json'; // Make sure this path is correct
+import movieData from '../assets/movies.json'; 
 
 const useFavorites = () => {
   const { user } = useAuth();

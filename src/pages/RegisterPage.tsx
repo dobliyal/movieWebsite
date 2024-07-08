@@ -23,14 +23,15 @@ const RegisterPage: React.FC = () => {
         onChange={(e) => setUsername(e.target.value)}
         fullWidth
       />
-      <TextField
+      <TextField sx={{ marginTop: '1rem' }}
         label="Password"
         type="password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
         fullWidth
       />
-      <Button onClick={handleRegister}>Register</Button>
+      <Button variant="contained"
+          color="primary"  sx={{ marginTop: '1rem' }} onClick={handleRegister}>Register</Button>
     </Container>
   );
 };

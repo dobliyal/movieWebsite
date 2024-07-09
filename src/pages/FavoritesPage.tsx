@@ -31,7 +31,7 @@ const FavoritesPage: React.FC = () => {
             <Typography
               variant="h6"
               sx={{
-                color: '#999',
+                color: 'grey',
                 fontSize: '1.2rem',
               }}
             >

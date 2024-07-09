@@ -25,13 +25,13 @@ const FavoritesPage: React.FC = () => {
               p: 2,
               border: '1px solid #ccc',
               borderRadius: '4px',
-              backgroundColor: '#f9f9f9',
+              backgroundColor:'grey'
             }}
           >
             <Typography
               variant="h6"
               sx={{
-                color: 'grey',
+                color: 'white',
                 fontSize: '1.2rem',
               }}
             >

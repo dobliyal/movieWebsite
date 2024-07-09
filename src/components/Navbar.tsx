@@ -35,31 +35,31 @@ const Navbar: React.FC = () => {
 
   const drawerContent = (
     <Box
-      sx={{ width: 250 }}
+      sx={{ width: 250, backgroundColor: 'rgb(54, 53, 53)', height: '100%', color: 'white' }}
       role="presentation"
       onClick={toggleDrawer(false)}
       onKeyDown={toggleDrawer(false)}
     >
       <List>
         <ListItem disablePadding>
-          <ListItemButton component={Link} to="/">
+          <ListItemButton component={Link} to="/" sx={{ color: 'white' }}>
             <ListItemText primary="Home" />
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding>
-          <ListItemButton component={Link} to="/favorites">
+          <ListItemButton component={Link} to="/favorites" sx={{ color: 'white' }}>
             <ListItemText primary="Favorites" />
           </ListItemButton>
         </ListItem>
         {user ? (
           <ListItem disablePadding>
-            <ListItemButton onClick={handleLogout}>
+            <ListItemButton onClick={handleLogout} sx={{ color: 'white' }}>
               <ListItemText primary="Logout" />
             </ListItemButton>
           </ListItem>
         ) : (
           <ListItem disablePadding>
-            <ListItemButton component={Link} to="/register">
+            <ListItemButton component={Link} to="/register" sx={{ color: 'white' }}>
               <ListItemText primary="Register" />
             </ListItemButton>
           </ListItem>

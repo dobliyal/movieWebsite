@@ -1,16 +1,13 @@
-// src/redux/store.ts
 import { configureStore } from '@reduxjs/toolkit';
 import moviesReducer from './slices/moviesSlice';
 import favoritesReducer from './slices/favoritesSlice';
-import commentsReducer from './slices/commentsSlice';
-import ratingsReducer from './slices/ratingsSlice';
+// import commentsReducer from './slices/commentsSlice';
 
 const store = configureStore({
   reducer: {
     movies: moviesReducer,
     favorites: favoritesReducer,
-    comments: commentsReducer,
-    ratings: ratingsReducer
+    // comments: commentsReducer,
   }
 });
 

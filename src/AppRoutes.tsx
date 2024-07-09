@@ -6,9 +6,11 @@ import FavoritesPage from './pages/FavoritesPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import Navbar from './components/Navbar';
+import ErrorBoundary from './components/ErrorBoundary';
 
 const AppRoutes: React.FC = () => (
   <Router>
+    <ErrorBoundary>
     <Navbar />
     <Routes>
       <Route path="/" element={<HomePage />} />
@@ -17,6 +19,7 @@ const AppRoutes: React.FC = () => (
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
     </Routes>
+    </ErrorBoundary>
   </Router>
 );
 

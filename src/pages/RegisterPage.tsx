@@ -15,23 +15,61 @@ const RegisterPage: React.FC = () => {
   };
 
   return (
-    <Container>
-      <Typography variant="h4">Register</Typography>
+    <Container maxWidth="sm" sx={{ mt: 4, backgroundColor: 'black', p: 4, borderRadius: 1, boxShadow: 3 }}>
+      <Typography variant="h4" align="center" sx={{ color: 'white', mb: 3 }}>
+        Register
+      </Typography>
       <TextField
         label="Username"
         value={username}
         onChange={(e) => setUsername(e.target.value)}
         fullWidth
+        sx={{
+          input: { color: 'white' },
+          label: { color: 'white' },
+          '& .MuiOutlinedInput-root': {
+            '& fieldset': { borderColor: 'white' },
+            '&:hover fieldset': { borderColor: 'gray' },
+            '&.Mui-focused fieldset': { borderColor: 'gray' },
+          },
+          mb: 2
+        }}
       />
-      <TextField sx={{ marginTop: '1rem' }}
+      <TextField
         label="Password"
         type="password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
         fullWidth
+        sx={{
+          input: { color: 'white' },
+          label: { color: 'white' },
+          '& .MuiOutlinedInput-root': {
+            '& fieldset': { borderColor: 'white' },
+            '&:hover fieldset': { borderColor: 'gray' },
+            '&.Mui-focused fieldset': { borderColor: 'gray' },
+          },
+          mb: 3,
+          mt: 2
+        }}
       />
-      <Button variant="contained"
-          color="primary"  sx={{ marginTop: '1rem' }} onClick={handleRegister}>Register</Button>
+      <Button
+        variant="contained"
+        color="primary"
+        fullWidth
+        sx={{
+          backgroundColor: 'gray',
+          color: 'white',
+          '&:hover': {
+            backgroundColor: 'darkgray',
+            color: 'black',
+          },
+          mt: 3
+        }}
+        onClick={handleRegister}
+      >
+        Register
+      </Button>
     </Container>
   );
 };

@@ -4,7 +4,7 @@ import localforage from 'localforage';
 interface User {
   username: string;
   password: string;
-  favorites: string[]; // Array of movie IDs
+  favorites: string[]; 
   addFavorite?: (movieId: string) => Promise<void>;
   removeFavorite?: (movieId: string) => Promise<void>;
 }

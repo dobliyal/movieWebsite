@@ -9,28 +9,47 @@ interface MovieCardProps {
 
 const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
   return (
-    <Card sx={{ display: 'flex', width: '100%', marginBottom: '1rem', border: '1px solid #ddd',
-      '&:hover': {
-        borderColor: '#aaa',
-        boxShadow: 4,
-      }}}>
+<Card
+      sx={{
+        display: 'flex',
+        width: '100%',
+        marginBottom: '1rem',
+        border: '1px solid #ddd',
+        backgroundColor: 'black',
+        color: 'white',
+        '&:hover': {
+          borderColor: '#aaa',
+          boxShadow: 4,
+        },
+      }}
+    >
       <CardContent sx={{ flex: 1 }}>
-        <Typography  gutterBottom variant="h5" component="div">
+        <Typography gutterBottom variant="h5" component="div" sx={{ color: 'white' }}>
           <strong>{movie.Title}</strong>
         </Typography>
-        <Typography  sx={{ marginTop: '4rem' }} >
-          <strong>Ratings:</strong>{movie.Ratings[0].Value}
+        <Typography sx={{ marginTop: '1rem', color: 'white' }}>
+          <strong>Ratings:</strong> {movie.Ratings[0].Value}
         </Typography>
-        <Typography >
-        <strong>Released:</strong>{movie.Released}
+        <Typography sx={{ color: 'white' }}>
+          <strong>Released:</strong> {movie.Released}
         </Typography>
-        <Typography >
-        <strong>Director:</strong> {movie.Director}
+        <Typography sx={{ color: 'white' }}>
+          <strong>Director:</strong> {movie.Director}
         </Typography>
         <Button
           component={Link}
           to={`/movie/${movie.imdbID}`}
-          sx={{ marginTop: '4rem' }}
+          variant="contained"
+          color="primary"
+          sx={{
+            marginTop: '1rem',
+            backgroundColor: 'gray',
+            color: 'white',
+            '&:hover': {
+              backgroundColor: 'darkgray',
+              color: 'black',
+            },
+          }}
         >
           View Details
         </Button>
@@ -45,5 +64,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
     </Card>
   );
 };
+
+
 
 export default MovieCard;

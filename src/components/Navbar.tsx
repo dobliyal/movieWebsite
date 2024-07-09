@@ -11,17 +11,72 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" sx={{ backgroundColor: 'black' }}>
       <Toolbar>
-        <Typography variant="h6" style={{ flexGrow: 1 }}>
+        <Typography variant="h6" sx={{ flexGrow: 1, fontSize: '1.5rem' }}>
           Movie Explorer
         </Typography>
-        <Button color="inherit" component={Link} to="/">Home</Button>
-        <Button color="inherit" component={Link} to="/favorites">Favorites</Button>
+        <Button
+          color="inherit"
+          component={Link}
+          to="/"
+          sx={{
+            fontSize: '1.2rem',
+            '&:hover': {
+              backgroundColor: 'gray',
+              color: 'white',
+              fontWeight: 'bold',
+            },
+          }}
+        >
+          Home
+        </Button>
+        <Button
+          color="inherit"
+          component={Link}
+          to="/favorites"
+          sx={{
+            fontSize: '1.2rem',
+            '&:hover': {
+              backgroundColor: 'gray',
+              color: 'white',
+              fontWeight: 'bold',
+            },
+          }}
+        >
+          Favorites
+        </Button>
         {user ? (
-          <Button color="inherit" onClick={handleLogout}>Logout</Button>
+          <Button
+            color="inherit"
+            onClick={handleLogout}
+            sx={{
+              fontSize: '1.2rem',
+              '&:hover': {
+                backgroundColor: 'gray',
+                color: 'white',
+                fontWeight: 'bold',
+              },
+            }}
+          >
+            Logout
+          </Button>
         ) : (
-          <Button color="inherit" component={Link} to="/register">Register</Button>
+          <Button
+            color="inherit"
+            component={Link}
+            to="/register"
+            sx={{
+              fontSize: '1.2rem',
+              '&:hover': {
+                backgroundColor: 'gray',
+                color: 'white',
+                fontWeight: 'bold',
+              },
+            }}
+          >
+            Register
+          </Button>
         )}
       </Toolbar>
     </AppBar>

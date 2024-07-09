@@ -44,43 +44,85 @@ const CommentSection: React.FC<CommentSectionProps> = ({ movieId }) => {
 
   return (
     <Box>
-      <Typography variant="h6">Comments</Typography>
+<Typography
+  variant="h6"
+  sx={{
+    color: 'white',
+    textShadow: '2px 2px 4px rgba(0,0,0,0.3)',
+    fontWeight: 'bold',
+    letterSpacing: '0.1rem',
+    fontFamily: 'Roboto, sans-serif',
+  }}
+>
+  Comments
+</Typography>
       <List>
         {comments.map((comment, index) => (
-          <ListItem key={index} alignItems="flex-start">
-            <ListItemText
-              primary={`${comment.user} - Rating: ${comment.rating}`}
-              secondary={comment.text}
-            />
-          </ListItem>
+          <ListItem key={index} alignItems="flex-start" sx={{ color: 'white' }}>
+          <ListItemText
+            primary={<Typography sx={{ color: 'white' }}>{`${comment.user} - Rating: ${comment.rating}`}</Typography>}
+            secondary={<Typography sx={{ color: 'white' }}>{comment.text}</Typography>}
+          />
+        </ListItem>
         ))}
       </List>
       {user ? (
         <>
             <Rating
-            value={rating}
-            onChange={(event, newValue) => setRating(newValue)}
-            sx={{ marginTop: '1rem' }}
-          />
+  value={rating}
+  onChange={(event, newValue) => setRating(newValue)}
+  sx={{
+    marginTop: '1rem',
+    color: 'white',
+    
+    '& .MuiRating-iconEmpty': {
+      color: 'white',
+    },
+  }}
+/>
           <TextField
-            label="Add a comment"
-            value={commentText}
-            onChange={(e) => setCommentText(e.target.value)}
-            fullWidth
-            multiline
-            rows={4}
-            sx={{ marginTop: '1rem' }}
-          />
+  label="Add a comment"
+  value={commentText}
+  onChange={(e) => setCommentText(e.target.value)}
+  fullWidth
+  multiline
+  rows={4}
+  sx={{
+    marginTop: '1rem',
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: 'white',
+      },
+    },
+    '& label.Mui-focused': {
+      color: 'white',
+    },
+    '& .MuiInputBase-input': {
+      color: 'white',
+    },
+  }}
+  InputLabelProps={{ style: { color: 'white' } }}
+  variant="outlined"
+/>
+
           <Button
             onClick={handleAddComment}
             variant="contained"
-            sx={{ marginTop: '1rem' }}
+            sx={{
+              backgroundColor: 'gray',
+              color: 'white',
+              '&:hover': {
+                backgroundColor: 'darkgray',
+                color: 'black',
+              },
+              mt: 3
+            }}
           >
             Add Comment
           </Button>
         </>
       ) : (
-        <Typography variant="body2" sx={{ marginTop: '1rem' }}>
+        <Typography variant="body2" sx={{ marginTop: '1rem',color:'white' }} >
           Please log in to add a comment.
         </Typography>
       )}

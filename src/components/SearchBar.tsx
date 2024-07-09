@@ -17,19 +17,38 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
 
   return (
     <Container>
-      <Box display="flex" justifyContent="center" my={2}>
-        <TextField onChange={handleSearch} 
-          label="Search Movies"
-          value={query}
-          // onChange={(e) => setQuery(e.target.value)}
-          variant="outlined"
-          fullWidth
-        />
-        <IconButton aria-label="search">
-          <SearchIcon />
-        </IconButton>
-      </Box>
-    </Container>
+    <Box display="flex" justifyContent="center" alignItems="center" my={2} sx={{ backgroundColor: 'black', p: 2, borderRadius: 1 }}>
+      <TextField
+        onChange={handleSearch}
+        label="Search Movies"
+        value={query}
+        variant="outlined"
+        fullWidth
+        sx={{
+          input: { color: 'white' },
+          label: { color: 'white' },
+          '& .MuiOutlinedInput-root': {
+            '& fieldset': { borderColor: 'white' },
+            '&:hover fieldset': { borderColor: 'gray' },
+            '&.Mui-focused fieldset': { borderColor: 'gray' },
+          },
+        }}
+      />
+      <IconButton
+        aria-label="search"
+        sx={{
+          color: 'white',
+          ml: 1,
+          '&:hover': {
+            backgroundColor: 'gray',
+            color: 'white',
+          },
+        }}
+      >
+        <SearchIcon />
+      </IconButton>
+    </Box>
+  </Container>
   );
 };
 

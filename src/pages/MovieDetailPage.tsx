@@ -2,7 +2,6 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import useMovies from '../hooks/useMovies';
 import { Container, Typography, Box, Button } from '@mui/material';
-// import RatingComponent from '../components/RatingComponent';
 import useFavorites from '../hooks/useFavorites';
 import CommentSection from '../components/CommentSection';
 
@@ -73,7 +72,6 @@ const MovieDetailPage: React.FC = () => {
       )}
     </Box>
     <CommentSection movieId={movie.imdbID} />
-    {/* <RatingComponent movieId={movie.imdbID} /> */}
   </Container>
   );
 };

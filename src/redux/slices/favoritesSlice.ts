@@ -35,4 +35,3 @@ const favoritesSlice = createSlice({
 export const { addFavorite, removeFavorite, setFavorites } = favoritesSlice.actions;
 
 export default favoritesSlice.reducer;
-//state.favorites.filter(movie=>movie.)

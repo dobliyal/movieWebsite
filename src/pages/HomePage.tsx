@@ -5,6 +5,7 @@ import { Container } from '@mui/material';
 import SearchBar from '../components/SearchBar';
 import { Movie } from '../types';
 import { useLocation } from 'react-router-dom';
+import Navbar from '../components/Navbar';
 
 const HomePage: React.FC = () => {
   const movies = useMovies();
@@ -20,11 +21,13 @@ const HomePage: React.FC = () => {
       setFilteredMovies(movies);
     }
   }, [location.pathname, movies]);
+  // TODO I believe this is redundant "location.pathname"
 
   const handleSearch = (query: string) => {
     if (query) {
       const filtered = movies.filter((movie) =>
         movie.Title.toLowerCase().includes(query.toLowerCase())
+      // TODO we could implement a sorting algorithm after this that sorts based on relevency
       );
       setFilteredMovies(filtered);
     } else {
@@ -34,6 +37,7 @@ const HomePage: React.FC = () => {
 
   return (
     <Container>
+    <Navbar />
       <SearchBar onSearch={handleSearch} />
       {filteredMovies.map((movie) => (
         <MovieCard key={movie.imdbID} movie={movie} />

@@ -1,18 +1,16 @@
-import React, { useState } from 'react';
-import {
-  AppBar,
-  Toolbar,
-  Typography,
-  Button,
-  IconButton,
-  Drawer,
-  List,
-  ListItem,
-  ListItemText,
-  Box,
-  useMediaQuery,
-  ListItemButton,
-} from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import Drawer from '@mui/material/Drawer';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
+import Box from '@mui/material/Box';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import ListItemButton from '@mui/material/ListItemButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Link } from 'react-router-dom';
 import useAuth from '../hooks/useAuth';
@@ -25,6 +23,10 @@ const Navbar: React.FC = () => {
   const handleLogout = async () => {
     await logout();
   };
+
+  useEffect(() => {
+    console.log('nav', user)
+  }, [user]);
 
   const toggleDrawer = (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
     if (event.type === 'keydown' && ((event as React.KeyboardEvent).key === 'Tab' || (event as React.KeyboardEvent).key === 'Shift')) {
@@ -40,7 +42,7 @@ const Navbar: React.FC = () => {
       onClick={toggleDrawer(false)}
       onKeyDown={toggleDrawer(false)}
     >
-      <List>
+      <List key={user?.toString()}>
         <ListItem disablePadding>
           <ListItemButton component={Link} to="/" sx={{ color: 'white' }}>
             <ListItemText primary="Home" />
@@ -69,7 +71,7 @@ const Navbar: React.FC = () => {
   );
 
   return (
-    <AppBar position="static" sx={{ backgroundColor: 'black' }}>
+    <AppBar key={user?.toString()} position="static" sx={{ backgroundColor: 'black' }}>
       <Toolbar>
         <Typography
           component={Link}
@@ -100,6 +102,7 @@ const Navbar: React.FC = () => {
           </>
         ) : (
           <>
+          
             <Button
               color="inherit"
               component={Link}

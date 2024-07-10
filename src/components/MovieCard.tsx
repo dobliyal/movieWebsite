@@ -1,14 +1,22 @@
 import React from 'react';
-import { Card, CardMedia, CardContent, Typography, Button, Box } from '@mui/material';
+import Card from '@mui/material/Card';
+import CardMedia from '@mui/material/CardMedia';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
 import { Link } from 'react-router-dom';
 import { Movie } from '../types';
+import useFavorites from '../hooks/useFavorites';
 
 interface MovieCardProps {
   movie: Movie;
 }
 
 const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
+  const { addToFavorites, removeFromFavorites, isFavorite } = useFavorites();
   return (
+    // TODO Create common components
 <Card
       sx={{
         display: 'flex',
@@ -53,6 +61,43 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
         >
           View Details
         </Button>
+        {!isFavorite(movie) ? (
+            <Button
+              variant="contained"
+              color="primary"
+              sx={{
+                mt: 2,
+                ml:0.2,
+                backgroundColor: 'gray',
+                color: 'white',
+                '&:hover': {
+                  backgroundColor: 'darkgray',
+                  color: 'black',
+                },
+              }}
+              onClick={() => addToFavorites(movie)}
+            >
+              Add to Favorites
+            </Button>
+          ) : (
+            <Button
+              variant="contained"
+              color="primary"
+              sx={{
+                mt: 2,
+                ml:0.2,
+                backgroundColor: 'gray',
+                color: 'white',
+                '&:hover': {
+                  backgroundColor: 'darkgray',
+                  color: 'black',
+                },
+              }}
+              onClick={() => removeFromFavorites(movie)}
+            >
+              Remove From Favorites
+            </Button>
+          )}
       </CardContent>
       <CardMedia
         component="img"
@@ -60,6 +105,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
         image={movie.Poster}
         title={movie.Title}
         sx={{ width: 200, height: 'auto' }}
+        //TODO use a fallback image
       />
     </Card>
   );

@@ -1,52 +1,57 @@
-import React, { Component, ReactNode } from 'react';
-import { Typography, Container, Button } from '@mui/material';
+import React, { useState, useEffect, ReactNode } from 'react';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import Button from '@mui/material/Button';
 
 interface Props {
   children: ReactNode;
 }
 
-interface State {
-  hasError: boolean;
-}
+const ErrorBoundary: React.FC<Props> = ({ children }) => {
+  const [hasError, setHasError] = useState(false);
 
-class ErrorBoundary extends Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-    this.state = { hasError: false };
+  useEffect(() => {
+    const handleError = (error: Error, errorInfo: React.ErrorInfo) => {
+      console.error("Uncaught error:", error, errorInfo);
+      setHasError(true);
+    };
+
+    const handleReset = () => {
+      setHasError(false);
+      window.location.reload();
+    };
+
+    // Here we set up a global error handler
+    const globalErrorHandler = (event: ErrorEvent) => {
+      handleError(event.error, {
+        componentStack: 'Global error handler',
+      });
+    };
+
+    window.addEventListener('error', globalErrorHandler);
+
+    return () => {
+      window.removeEventListener('error', globalErrorHandler);
+    };
+  }, []);
+
+  if (hasError) {
+    return (
+      <Container sx={{ textAlign: 'center', mt: 5 }}>
+        <Typography variant="h4" gutterBottom>
+          Something went wrong.
+        </Typography>
+        <Typography variant="body1" gutterBottom>
+          An unexpected error has occurred. Please try again later.
+        </Typography>
+        <Button variant="contained" color="primary" onClick={() => setHasError(false)}>
+          Reload Page
+        </Button>
+      </Container>
+    );
   }
 
-  static getDerivedStateFromError(_: Error): State {
-    return { hasError: true };
-  }
-
-  componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
-    console.error("Uncaught error:", error, errorInfo);
-  }
-
-  handleReload = () => {
-    this.setState({ hasError: false });
-    window.location.reload();
-  };
-
-  render() {
-    if (this.state.hasError) {
-      return (
-        <Container sx={{ textAlign: 'center', mt: 5 }}>
-          <Typography variant="h4" gutterBottom>
-            Something went wrong.
-          </Typography>
-          <Typography variant="body1" gutterBottom>
-            An unexpected error has occurred. Please try again later.
-          </Typography>
-          <Button variant="contained" color="primary" onClick={this.handleReload}>
-            Reload Page
-          </Button>
-        </Container>
-      );
-    }
-
-    return this.props.children;
-  }
-}
+  return <>{children}</>;
+};
 
 export default ErrorBoundary;

@@ -1,7 +1,10 @@
 import React from 'react';
 import useFavorites from '../hooks/useFavorites';
 import MovieCard from '../components/MovieCard';
-import { Grid, Typography, Box } from '@mui/material';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
+import  Box  from '@mui/material/Box';
+
 import { Movie } from '../types';
 
 const FavoritesPage: React.FC = () => {

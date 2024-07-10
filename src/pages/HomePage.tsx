@@ -21,7 +21,6 @@ const HomePage: React.FC = () => {
       setFilteredMovies(movies);
     }
   }, [location.pathname, movies]);
-  // TODO I believe this is redundant "location.pathname"
 
   const handleSearch = (query: string) => {
     if (query) {
@@ -36,7 +35,7 @@ const HomePage: React.FC = () => {
 
   return (
     <Container>
-    <Navbar />
+    {/* <Navbar /> */}
       <SearchBar onSearch={handleSearch} />
       {filteredMovies.map((movie) => (
         <MovieCard key={movie.imdbID} movie={movie} />

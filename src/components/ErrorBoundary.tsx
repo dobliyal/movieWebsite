@@ -21,7 +21,6 @@ const ErrorBoundary: React.FC<Props> = ({ children }) => {
       window.location.reload();
     };
 
-    // Here we set up a global error handler
     const globalErrorHandler = (event: ErrorEvent) => {
       handleError(event.error, {
         componentStack: 'Global error handler',

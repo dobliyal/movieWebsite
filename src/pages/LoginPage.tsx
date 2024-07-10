@@ -12,7 +12,6 @@ const LoginPage: React.FC = () => {
   const navigate = useNavigate();
   const [error, setError] = useState('');
 
-  // Validation schema
   const validationSchema = Yup.object().shape({
     username: Yup.string().required('Username is required'),
     password: Yup.string().required('Password is required'),

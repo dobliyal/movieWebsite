@@ -24,10 +24,6 @@ const Navbar: React.FC = () => {
     await logout();
   };
 
-  useEffect(() => {
-    console.log('nav', user)
-  }, [user]);
-
   const toggleDrawer = (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
     if (event.type === 'keydown' && ((event as React.KeyboardEvent).key === 'Tab' || (event as React.KeyboardEvent).key === 'Shift')) {
       return;
@@ -37,12 +33,12 @@ const Navbar: React.FC = () => {
 
   const drawerContent = (
     <Box
-      sx={{ width: 250, backgroundColor: 'rgb(54, 53, 53)', height: '100%', color: 'white' }}
+      sx={{ width: 250, backgroundColor: 'black', height: '100%', color: 'white' }}
       role="presentation"
       onClick={toggleDrawer(false)}
       onKeyDown={toggleDrawer(false)}
     >
-      <List key={user?.toString()}>
+      <List>
         <ListItem disablePadding>
           <ListItemButton component={Link} to="/" sx={{ color: 'white' }}>
             <ListItemText primary="Home" />
@@ -71,7 +67,7 @@ const Navbar: React.FC = () => {
   );
 
   return (
-    <AppBar key={user?.toString()} position="static" sx={{ backgroundColor: 'black' }}>
+    <AppBar position="fixed" sx={{ backgroundColor: 'black' }} className="navbar">
       <Toolbar>
         <Typography
           component={Link}

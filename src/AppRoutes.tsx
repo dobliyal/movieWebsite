@@ -11,7 +11,6 @@ import ErrorBoundary from './components/ErrorBoundary';
 const AppRoutes: React.FC = () => (
   <Router>
     <ErrorBoundary>
-    <Navbar />
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/movie/:id" element={<MovieDetailPage />} />

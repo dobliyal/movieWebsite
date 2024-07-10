@@ -8,13 +8,23 @@ import Box from '@mui/material/Box';
 import { Link } from 'react-router-dom';
 import { Movie } from '../types';
 import useFavorites from '../hooks/useFavorites';
-
+import useAuth from '../hooks/useAuth';
 interface MovieCardProps {
   movie: Movie;
 }
 
 const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
   const { addToFavorites, removeFromFavorites, isFavorite } = useFavorites();
+  const {user}=useAuth();
+
+  // const HandleaddToFavorite=()=>{
+  //   if(user){
+  //     addToFavorites(movie);
+  //   }
+  //   else{
+  //     alert("Please login to add movie to favorites")
+  //   }
+  // }
   return (
 <Card
       sx={{
@@ -104,7 +114,6 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
         image={movie.Poster}
         title={movie.Title}
         sx={{ width: 200, height: 'auto' }}
-        //TODO use a fallback image
       />
     </Card>
   );

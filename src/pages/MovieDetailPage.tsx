@@ -4,7 +4,7 @@ import useMovies from '../hooks/useMovies';
 import { Container, Typography, Box, Button, Card, CardMedia } from '@mui/material';
 import useFavorites from '../hooks/useFavorites';
 import CommentSection from '../components/CommentSection';
-
+import Navbar from '../components/Navbar';
 const MovieDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const movies = useMovies();
@@ -14,7 +14,9 @@ const MovieDetailPage: React.FC = () => {
   if (!movie) return <Typography variant="h5">Movie not found</Typography>;
 
   return (
-    <Container maxWidth="md" sx={{ mt: 4, mb: 4 }}>
+    <Box>
+    <Navbar />
+    <Container maxWidth="md" sx={{ mt: 8, mb: 4 }}>
       <Card
         sx={{
           display: 'flex',
@@ -93,6 +95,7 @@ const MovieDetailPage: React.FC = () => {
         <CommentSection movieId={movie.imdbID} />
       </Box>
     </Container>
+    </Box>
   );
 };
 

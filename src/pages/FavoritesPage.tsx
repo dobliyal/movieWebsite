@@ -4,7 +4,7 @@ import MovieCard from '../components/MovieCard';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import  Box  from '@mui/material/Box';
-
+import Navbar from '../components/Navbar';
 import { Movie } from '../types';
 
 const FavoritesPage: React.FC = () => {
@@ -12,6 +12,8 @@ const FavoritesPage: React.FC = () => {
 
   return (
     <Box>
+    <Navbar />
+    <Box sx={{mt: 10}}>
       <Grid container spacing={2}>
         {favorites.length ? (
           favorites.map((movie: Movie) => (
@@ -43,6 +45,7 @@ const FavoritesPage: React.FC = () => {
           </Box>
         )}
       </Grid>
+    </Box>
     </Box>
   );
 };

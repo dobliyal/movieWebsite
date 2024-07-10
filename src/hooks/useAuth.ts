@@ -48,7 +48,6 @@ const useAuth = () => {
     const savedUser = await localforage.getItem<User>('user');
     if (savedUser && savedUser.username === username && savedUser.password === password) {
       setUser(attachMethods(savedUser));
-      console.log('user', savedUser);
       return true;
     }
     return false;
@@ -60,7 +59,7 @@ const useAuth = () => {
     await localforage.removeItem('user');
   };
 
-  return { user, register, login, logout };
+  return { user, register, login, logout};
 };
 
 export default useAuth;

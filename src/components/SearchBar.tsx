@@ -30,7 +30,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
 
   return (
     <Container>
-      <Box display="flex" justifyContent="center" alignItems="center" my={2} sx={{ backgroundColor: 'black', p: 2, borderRadius: 1 }}>
+      <Box display="flex" justifyContent="center" alignItems="center" my={2} sx={{ mt:8,backgroundColor: 'black', p: 2, borderRadius: 1 }}>
         <TextField
           onChange={handleSearch}
           label="Search Movies"

@@ -27,7 +27,6 @@ const HomePage: React.FC = () => {
     if (query) {
       const filtered = movies.filter((movie) =>
         movie.Title.toLowerCase().includes(query.toLowerCase())
-      // TODO we could implement a sorting algorithm after this that sorts based on relevency
       );
       setFilteredMovies(filtered);
     } else {

@@ -10,7 +10,6 @@ import ErrorBoundary from './components/ErrorBoundary';
 
 const AppRoutes: React.FC = () => (
   <Router>
-    {/* // TODO Error boundary shouldn't be here ideally */}
     <ErrorBoundary>
     <Routes>
       <Route path="/" element={<HomePage />} />

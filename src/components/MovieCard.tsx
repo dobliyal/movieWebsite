@@ -16,7 +16,6 @@ interface MovieCardProps {
 const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
   const { addToFavorites, removeFromFavorites, isFavorite } = useFavorites();
   return (
-    // TODO Create common components
 <Card
       sx={{
         display: 'flex',
